@@ -1,6 +1,7 @@
 # Gun Wildman
 
 A clone of the classic Wild Gunman game using React.
+It ain't much but you can give it a go here: https://johnnypesola.github.io/gunwildman/
 
 ## Available Scripts
 
