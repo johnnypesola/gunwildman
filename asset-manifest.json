@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/gunwildman/static/css/main.52cbadb9.chunk.css",
+    "main.js": "/gunwildman/static/js/main.4c0d713e.chunk.js",
+    "main.js.map": "/gunwildman/static/js/main.4c0d713e.chunk.js.map",
+    "runtime~main.js": "/gunwildman/static/js/runtime~main.679615ee.js",
+    "runtime~main.js.map": "/gunwildman/static/js/runtime~main.679615ee.js.map",
+    "static/js/2.96827c10.chunk.js": "/gunwildman/static/js/2.96827c10.chunk.js",
+    "static/js/2.96827c10.chunk.js.map": "/gunwildman/static/js/2.96827c10.chunk.js.map",
+    "index.html": "/gunwildman/index.html",
+    "precache-manifest.52ad12e9cbb91ca63411c47aaa7c236b.js": "/gunwildman/precache-manifest.52ad12e9cbb91ca63411c47aaa7c236b.js",
+    "service-worker.js": "/gunwildman/service-worker.js",
+    "static/css/main.52cbadb9.chunk.css.map": "/gunwildman/static/css/main.52cbadb9.chunk.css.map",
+    "static/media/index.css": "/gunwildman/static/media/PressStart2P-Regular.2c404fd0.ttf"
+  }
+}
