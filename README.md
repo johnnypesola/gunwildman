@@ -1,6 +1,6 @@
-# Gun wildman
+# Gun Wildman
 
-A clone of the classic Wild gunman game using React.
+A clone of the classic Wild Gunman game using React.
 
 ## Available Scripts
 
