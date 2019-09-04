@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Gun wildman
+
+A clone of the classic Wild gunman game using React.
 
 ## Available Scripts
 
