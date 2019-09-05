@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/gunwildman/precache-manifest.52ad12e9cbb91ca63411c47aaa7c236b.js"
+  "/gunwildman/precache-manifest.7f7d197d98eedc66f4f04935fe9eecd4.js"
 );
 
 self.addEventListener('message', (event) => {
