@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, ReactElement } from "react";
 import styled from "styled-components";
 import gun from "./resources/img/gun.png";
 import wild from "./resources/img/wild.png";
 import man from "./resources/img/man.png";
+import BulletHole from "./components/BulletHole/BulletHole";
 
 const Header = styled.header`
   display: flex;
@@ -38,9 +39,29 @@ const MenuOption = styled.div`
   color: #5a96ff;
 `;
 
+const MenuScene: React.FC = ({ children }) => {
+  const bulletArray: ReactElement[] = [];
+  const [bulletHoles, setBulletHoles] = useState(bulletArray);
+
+  // const bulletHoles: Array<object> = [];
+  const AddBulletHole = (e: React.MouseEvent) => {
+    const newBulletHole = (
+      <BulletHole xPos={e.clientX} yPos={e.clientY}></BulletHole>
+    );
+    setBulletHoles([...bulletHoles, newBulletHole]);
+  };
+
+  return (
+    <div onMouseDown={AddBulletHole}>
+      {children}
+      {bulletHoles}
+    </div>
+  );
+};
+
 const App: React.FC = () => {
   return (
-    <>
+    <MenuScene>
       <Header>
         <LogoImg src={gun} />
         <LogoImg src={wild} />
@@ -52,7 +73,7 @@ const App: React.FC = () => {
         <MenuOption>Game c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gang</MenuOption>
         Top score - 12000
       </MenuContainer>
-    </>
+    </MenuScene>
   );
 };
 
