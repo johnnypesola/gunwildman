@@ -1,5 +1,34 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import React, { ReactElement } from "react";
+
+interface BulletStyleProps {
+  x: number;
+  y: number;
+}
+
+interface RevolverCylinderProps {
+  bulletCount: number;
+}
+
+const commonCss = css<BulletStyleProps>`
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  bottom: ${props => props.x - 9}px;
+  right: ${props => props.y - 9}px;
+`;
+
+const Bullet = styled.div`
+  ${commonCss}
+  background: darkgoldenrod;
+`;
+
+const Chamber = styled.div`
+  ${commonCss}
+  background: black;
+`;
 
 const Cylinder = styled.div`
   position: absolute;
@@ -11,34 +40,7 @@ const Cylinder = styled.div`
   border-radius: 50%;
 `;
 
-interface BulletStyleProps {
-  x: number;
-  y: number;
-}
-
-const Bullet = styled.div<BulletStyleProps>`
-  position: absolute;
-  bottom: ${props => props.x - 9}px;
-  right: ${props => props.y - 9}px;
-  width: 16px;
-  height: 16px;
-  background: darkgoldenrod;
-  border: 1px solid black;
-  border-radius: 50%;
-`;
-
-const Chamber = styled.div<BulletStyleProps>`
-  position: absolute;
-  bottom: ${props => props.x - 9}px;
-  right: ${props => props.y - 9}px;
-  width: 16px;
-  height: 16px;
-  background: black;
-  border: 1px solid black;
-  border-radius: 50%;
-`;
-
-const rotate = (
+const calcRotation = (
   cx: number,
   cy: number,
   x: number,
@@ -53,26 +55,18 @@ const rotate = (
   return [nx, ny];
 };
 
-interface RevolverCylinderProps {
-  bulletCount: number;
-}
-
 const RevolverCylinder: React.FC<RevolverCylinderProps> = ({ bulletCount }) => {
   let chambers: Array<ReactElement> = [];
   let bullets: Array<ReactElement> = [];
 
   for (let i = 0; i < 6; i++) {
-    const bulletCords = rotate(30, 30, 50, 30, 60 * i);
-    chambers.push(
-      <Chamber key={chambers.length} x={bulletCords[0]} y={bulletCords[1]} />
-    );
+    const [x, y] = calcRotation(30, 30, 50, 30, 60 * i);
+    chambers.push(<Chamber key={chambers.length} x={x} y={y} />);
   }
 
   for (let i = 0; i < bulletCount; i++) {
-    const bulletCords = rotate(30, 30, 50, 30, 60 * i);
-    bullets.push(
-      <Bullet key={bullets.length} x={bulletCords[0]} y={bulletCords[1]} />
-    );
+    const [x, y] = calcRotation(30, 30, 50, 30, 60 * i);
+    bullets.push(<Bullet key={bullets.length} x={x} y={y} />);
   }
   return (
     <Cylinder>
