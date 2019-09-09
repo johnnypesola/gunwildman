@@ -4,6 +4,7 @@ import gun from "./resources/img/gun.png";
 import wild from "./resources/img/wild.png";
 import man from "./resources/img/man.png";
 import BulletHole from "./components/BulletHole/BulletHole";
+import RevolverChamber from "./components/RevolverChamber/RevolverChamber";
 
 const Header = styled.header`
   display: flex;
@@ -39,41 +40,71 @@ const MenuOption = styled.div`
   color: #5a96ff;
 `;
 
-const MenuScene: React.FC = ({ children }) => {
-  const bulletArray: ReactElement[] = [];
-  const [bulletHoles, setBulletHoles] = useState(bulletArray);
+const MenuSceneContainer = styled.div`
+  height: 100%;
+`;
 
-  // const bulletHoles: Array<object> = [];
+const MenuScene: React.FC = ({ children }) => {
+  const bulletHoleArray: ReactElement[] = [];
+  const [bulletHoles, setBulletHoles] = useState(bulletHoleArray);
+  const [bulletCount, setBulletCount] = useState(6);
+
   const AddBulletHole = (e: React.MouseEvent) => {
     const newBulletHole = (
-      <BulletHole xPos={e.clientX} yPos={e.clientY}></BulletHole>
+      <BulletHole
+        key={bulletHoles.length}
+        xPos={e.clientX}
+        yPos={e.clientY}
+      ></BulletHole>
     );
     setBulletHoles([...bulletHoles, newBulletHole]);
   };
 
+  const FireWeapon = (e: React.MouseEvent) => {
+    if (!bulletCount) return;
+    AddBulletHole(e);
+    setBulletCount(bulletCount - 1);
+  };
+
+  const ReloadWeapon = () => {
+    setBulletCount(6);
+  };
+
+  const HandleMouseDown = (e: React.MouseEvent) => {
+    if (e.button === 0) FireWeapon(e);
+    if (e.button === 2) ReloadWeapon();
+  };
+
   return (
-    <div onMouseDown={AddBulletHole}>
+    <MenuSceneContainer onMouseDown={HandleMouseDown}>
       {children}
       {bulletHoles}
-    </div>
+      <RevolverChamber bulletCount={bulletCount} />
+    </MenuSceneContainer>
   );
 };
 
 const App: React.FC = () => {
   return (
-    <MenuScene>
-      <Header>
-        <LogoImg src={gun} />
-        <LogoImg src={wild} />
-        <LogoImg src={man} />
-      </Header>
-      <MenuContainer>
-        <MenuOption>Game a &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 outlaw</MenuOption>
-        <MenuOption>Game b &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 outlaws</MenuOption>
-        <MenuOption>Game c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gang</MenuOption>
-        Top score - 12000
-      </MenuContainer>
-    </MenuScene>
+    <>
+      <MenuScene>
+        <Header>
+          <LogoImg src={gun} />
+          <LogoImg src={wild} />
+          <LogoImg src={man} />
+        </Header>
+        <MenuContainer>
+          <MenuOption>
+            Game a &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 outlaw
+          </MenuOption>
+          <MenuOption>
+            Game b &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 outlaws
+          </MenuOption>
+          <MenuOption>Game c &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gang</MenuOption>
+          Top score - 12000
+        </MenuContainer>
+      </MenuScene>
+    </>
   );
 };
 

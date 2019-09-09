@@ -16,8 +16,8 @@ const ShineStyle = styled.div<ShineStyleProps>`
   box-shadow: rgb(255, 255, 255) ${props => props.shadowXPos}px
     ${props => props.shadowYPos}px 20px 0px;
   background: #fff;
-  width: 20px;
-  height: 20px;
+  width: ${props => props.size}px;
+  height: ${props => props.size}px;
   border-radius: 50%;
 `;
 
@@ -27,9 +27,9 @@ interface BulletHoleProps {
 }
 
 const BulletHole: React.FC<BulletHoleProps> = ({ xPos, yPos }) => {
-  const size = 20;
-  const shadowXPos = 0;
-  const shadowYPos = 0;
+  const size = 18;
+  const shadowXPos = 3;
+  const shadowYPos = 3;
 
   return (
     <ShineStyle
